@@ -92,7 +92,5 @@ while generated < num_samples
     end
 end
 
-% placeholder to be deleted
-% features_neg = rand(100, (feature_params.template_size / feature_params.hog_cell_size)^2 * 31);
 
 end

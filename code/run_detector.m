@@ -50,11 +50,10 @@ image_ids = cell(0,1);
 %than 1
 scale_multiplier = 0.7;
 
-min_confidence_threshold = -0.0;
+min_confidence_threshold = 0.3;
 window_size = feature_params.template_size/feature_params.hog_cell_size;
 
 for i = 1:length(test_scenes)
-    count=0;
     fprintf('Detecting faces in %s\n', test_scenes(i).name)
     img = imread( fullfile( test_scn_path, test_scenes(i).name ));
     img = single(img)/255;
@@ -67,13 +66,6 @@ for i = 1:length(test_scenes)
     cur_bboxes = zeros(0, 4);
     cur_confidences = zeros(0, 1); 
     cur_image_ids = zeros(0, 1);
-    %You can delete all of this below.
-    % Let's create 15 random detections per image
-    % cur_x_min = rand(15,1) * size(img,2);
-    % cur_y_min = rand(15,1) * size(img,1);
-    % cur_bboxes = [cur_x_min, cur_y_min, cur_x_min + rand(15,1) * 50, cur_y_min + rand(15,1) * 50];
-    % cur_confidences = rand(15,1) * 4 - 2; %confidences in the range [-2 2]
-    % cur_image_ids(1:15,1) = {test_scenes(i).name};
     
     scale = 1;
     while floor(scale * img_min_dimension/feature_params.hog_cell_size) > window_size 
@@ -81,6 +73,11 @@ for i = 1:length(test_scenes)
         scaled_hog = vl_hog(scaled_image, feature_params.hog_cell_size);
         width = size(scaled_hog, 2);
         height = size(scaled_hog, 1);
+        
+%         if testctrl == 1
+%             imshow(scaled_image);
+%             error('testctrl stop')
+%         end
         
         for x = 1:1:width - window_size + 1
             for y = 1:1:height - window_size + 1
