@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<!--
+	Iridium by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>msbd6000c-magic-scissor</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+	</head>
+	<body class="homepage">
+
+		<!-- Header -->
+		<div id="header">
+			<div class="container"> 
+				
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a href="#">Intelligent Scissors</a></h1>
+					<span></span>
+					<span>MSBD6000C Computer Vision - Project 1</span>
+					<span>LI Yilong & CHEN Yuji</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Main -->
+		<div id="main">
+			<div class="container">
+				<div class="row"> 
+					
+					<!-- Content -->
+					<div id="content" class="8u skel-cell-important">
+						<section>
+							<header>
+								<h2>Project Description</h2>
+								<!--<span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>-->
+							</header>
+							<!--<a href="#" class="image full"><img src="images/pic07.jpg" alt="" /></a>-->
+							<p>This is the first project of <strong>MSBD6000C Computer Vision</strong>, you may find the introduction of it from <a href="https://courses.cs.washington.edu/courses/cse455/03wi/projects/project1/web/project1.htm">here without password</a>.</p>
+							<p>In this project, we created a tool that allows a user to cut an object out of one image and paste it into another.  The tool helps the user trace the object by providing a "live wire" that automatically snaps to and wraps around the object of interest.  Then we used the tool to create a composite image.</p>
+						</section>
+						
+						<section>
+							<header>
+								<h2>Artifacts</h2>
+								<span class="byline">And the original images & masks</span>
+							</header>
+							<h1>Atrifact 1: Good Night</h1>
+							<img src="images/artifact.jpg" alt="" />
+							<img src="images/tumblr_ofqt4vdxgz1sdrnfzo1_1280.jpg" width=400 alt="" />
+							<img src="images/bunny.png" width=400 alt="" />
+							<img src="images/kari-shea-398668-unsplash.jpg" alt="" />
+							<img src="images/sofa.png" alt="" />
+							<img src="images/images.jpg" width=400 alt="" />
+							<img src="images/star.png" width=400 alt="" />
+							<img src="images/wil-stewart-23387-unsplash.jpg" width=400 alt="" />
+							<h1>Atrifact 2: I Want Them All</h1>
+							<img src="images/artifact-2.jpg" alt="" />
+							<img src="images/ball.jpg" alt="" />
+							<img src="images/001Bulbasaur.jpg" alt="" />
+							<img src="images/024.jpg" alt="" />
+							<img src="images/dragon-c.jpg" alt="" />
+							<img src="images/c-wantthemall.jpg" alt="" />
+							<img src="images/img_630333.jpg" width=400 alt="" />
+						</section>
+						
+						<section>
+							<header>
+								<h2>Develop Environment</h2>
+							</header>
+							<p>Programming Language: C++</p>
+							<p>SDK: Desktop Qt 5.10.0 MSVC 2017 64-bit</p>
+							<p>OS: Windows</p>
+						</section>
+						
+						<section>
+							<header>
+								<h2>How To Use It</h2>
+								<span class="byline"><p></p>Load Picture</span>
+									<p>To load a picture, click <strong>File</strong> in the top left-hand corner of the screen. From the menu, choose <strong>Open</strong>. A File Explorer will come up. Choose the picture that you want to edit and double click on it.</p>
+									<img src="images/menu-file.png" alt="" />
+								
+								<span class="byline">Choose Mode</span>
+									<p>The default mode is Work Mode, showing original image with contours superimposed on it. You can switch the mode between Work Mode and Debug Mode by clicking <strong>Mode</strong> and choosing the mode you want.</p>
+									<img src="images/menu-mode.png" alt="" />
+									<p>
+										<strong>Work Mode</strong>
+									</p>
+									
+									<p>Show original image with contours superimposed on it.</p>
+									<img src="images/lena.jpg" alt="" />
+									<p>
+										<strong>Debug Mode</strong>
+									</p>
+									<p><i>Pixel Node</i></p>
+									<p>Draw a cost graph with original image pixel colors at the center of each 3-by-3 window, and black everywhere else.</p>
+									<img src="images/debug-pixelNode.png" alt="" />
+									<p><i>Cost Graph</i></p>
+									<p>Draw a cost graph with both pixel colors and link costs, where you can see whether your cost computation is reasonable or not, e.g., low cost (dark intensity) for links along image edges.</p>
+									<img src="images/debug-costGraph.png" alt="" />
+									<p><i>Path Tree</i></p>
+									<p>Show minimum path tree in the cost graph for the current seed. You can use the input box to simulate how the tree is computed by specifying the number of expanded nodes. By default, the number of expanded nodes is the number of pixels in the whole picture. The tree consists of links with yellow color. The back track direction (towards the seed) goes from light yellow to dark yellow.</p>
+									<img src="images/debug-pathTree.png" alt="" />
+									<p><i>Min Path</i></p>
+									<p>Show the minimum path between the current seed and the mouse position.</p>
+									<p><strong>Notice: </strong>To use the <i>Path Tree</i> and <i>Min Path</i> in debug mode, you need to have an active seed point. the active seed point is the last <strong>Left Click / Ctrl + Left Click</strong> point on the contour you are working with, e.g., the contour that has not yet be committed by <strong>Enter / Ctrl + Enter</strong>. (See the short cut keys below)</p>
+								
+								<span class="byline">Draw Live Wire</span>
+									<p>In <strong>Work Mode</strong>, press <strong>Left Click</strong> to locate the first seed. Then, move the mouse and the wire along the edge will be displayed on the picture. Keep <strong>Left Click</strong> to create following seeds.</p>
+									<img src="images/livewire.png" alt="" />
+								
+								<span class="byline">Finish and Save</span>
+									<p>If you have created some seeds, press and hold <strong>Ctrl</strong> to finish the current contour, or press and hold <strong>Ctrl + Enter</strong> to finish the current contour as closed.</p>
+									<img src="images/saved-contour.bmp" alt="" />
+									<p>To save your work, click <strong>File</strong> in the menu and choose <strong>Save Mask</strong> to save compositing mask for PhotoShop, or choose <strong>Save Contour</strong> to save image with contour marked.</p>
+									<img src="images/menu-file.png" alt="" />
+							</header>
+						</section>
+					</div>
+					
+					<!-- Sidebar -->
+					<div id="sidebar" class="4u">
+						<section>
+							<header>
+								<h2>Our Feelings</h2>
+							</header>
+							<ul class="style">
+								<li>
+									<p class="posted">LI Yilong</p>
+									<img src="images/liyilong.jpg" height=64 alt="" />
+									<p class="text">Nullam non wisi a sem eleifend. Donec mattis libero eget urna. Pellentesque viverra enim.</p>
+								</li>
+								<li>
+									<p class="posted">CHEN Yuji</p>
+									<img src="images/chenyuji.png" height=64 alt="" />
+									<p class="text">It is fun to learn the relationship between the center pixel and its eight neighbors. A thousand thanks to Stackoverflow. </p>
+								</li>
+							</ul>
+							<p><a href="https://github.com/cyj5230/magic-scissor" class="button">GitHub Address</a></p>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<div id="featured">
+			<div class="container">
+				<div class="row">
+					<div class="4u">
+						<h2>Other UI Functions</h2>
+						<a href="#" class="image full"><img src="images/pic02.jpg" alt="" /></a>
+						<p><strong>Ctrl+"+"</strong>, zoom in</p>
+						<p><strong>Ctrl+"-"</strong>, zoom out</p>
+						<p><strong>Backspace</strong>, when scissoring, delete the last seed; otherwise, delete selected contour</p>
+					</div>
+					<div class="4u">
+						<h2>Whistles and Bells</h2>
+						<a href="#" class="image full"><img src="images/blur-5x5.png" alt="" /></a>
+						<p><img src="images/blur5-debug-costGraph.png" alt="" /></p>
+						<p>We allow blurring the image by different amounts before computing link costs.  It can be observed that the costs are calculated more evenly and the range of min cost path increased after blurring. </p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<div class="container">
+				<p>Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)</p>
+				<p>Edited by CHEN Yuji</p>
+			</div>
+		</div>
+		
+	</body>
+</html>

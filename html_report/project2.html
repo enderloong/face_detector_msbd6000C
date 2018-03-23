@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<!--
+	Iridium by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>msbd6000c-face-detection</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+	</head>
+	<body class="homepage">
+
+		<!-- Header -->
+		<div id="header">
+			<div class="container"> 
+				
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a href="#">Face Detection</a></h1>
+					<span></span>
+					<span>MSBD6000C Computer Vision - Project 2</span>
+					<span>LI Yilong & CHEN Yuji</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Main -->
+		<div id="main">
+			<div class="container">
+				<div class="row"> 
+					
+					<!-- Content -->
+					<div id="content" class="8u skel-cell-important">
+						<section>
+							<header>
+								<h2>Project Description</h2>
+								<!--<span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>-->
+							</header>
+							<!--<a href="#" class="image full"><img src="images/pic07.jpg" alt="" /></a>-->
+							<p>This is the second project of <strong>MSBD6000C Computer Vision</strong>, you may find the introduction of it from <a href="https://home.cse.ust.hk/~cktang/msbd6000c/Password_Only/projects/faces/index.html">here</a>.</p>
+							<p>In this project, we created a model that can detect human faces.</p>
+							<p>Comparing with the success of face detection (and object detection in general) can be traced back to influential works such as <strong>Rowley et al. 1998</strong> and <strong>Viola-Jones 2001</strong>, we developed a simpler (but still very effective!) sliding window detector of <strong>Dalal and Triggs 2005</strong>. Dalal-Triggs focuses on representation more than learning and introduces the SIFT-like Histogram of Gradients (HoG) representation (pictured to the right). We were responsible for the detection pipeline except HoG, though -- handling heterogeneous training and testing data, training a linear classifier (a HoG template), and using our classifier to classify millions of sliding windows at multiple scales. </p>
+						</section>
+						
+						<section>
+							<header>
+								<h2>Sample Results</h2>
+							</header>
+							<p>Results of original detector:</p>
+								<ul>
+									  <li><img src="images/proj2/ori/detections_Argentina.jpg.png" alt="" /></li>
+									  <li><img src="images/proj2/ori/detections_madaboutyou.jpg.png" alt="" /></li>
+								</ul>
+							
+							<p>Results of detector with <strong>Hard Negative Mining</strong>:</p>
+								<ul>
+									  <li><img src="images/proj2/bonus/detections_237815567.jpg.png" alt="" /></li>
+									  <li><img src="images/proj2/bonus/detections_213654866.jpg.png" alt="" /></li>
+								</ul>
+						</section>
+						
+						<section>
+							<header>
+								<h2>Develop Environment</h2>
+							</header>
+							<p>Programming Language: MATLAB</p>
+							<p>Library: VLFeat binary package</p>
+							<p>OS: Windows</p>
+						</section>
+						
+						<section>
+							<header>
+								<h2>Algorithm</h2>
+								<span class="byline"><p></p>Step 1: Load cropped positive trained examples and random negative examples</span>
+									<strong>get_positive_features.m</strong>
+									<ul>
+									  <li>1. Extract image file names</li>
+									  <li>2. Load images</li>
+									  <li>3. Transform images from RGB to grayscale</li>
+									  <li>4. Normalization</li>
+									  <li>5. Compute HOG descriptors</li>
+									  <li>6. Save the HOG features</li>
+									</ul>
+									<strong>get_random_negative_features.m</strong>
+									<ul>
+									  <li>1. Compute the candidates of possible values of x_min,y_min</li>
+									  <li>2. Implement the generating candidates of negative samples</li>
+									  <li>3. Extract and save HOG features</li>
+									</ul>
+								
+								<span class="byline"><p></p>Step 2: Train the classifier</span>
+									<ul>
+									  <li>1. Connect the features of positive and random negative samples along the x-axis</li>
+									  <li>2. Transpose the feature matrix</li>
+									  <li>3. Connect the labels of positive and negative samples</li>
+									  <li>4. Setup lamdba (suggested value: 0.0001)</li>
+									  <li>5. Call <strong>vl_svmtrain</strong></li>
+									</ul>
+									
+								<span class="byline"><p></p>Step 3: Examine learned classifier</span>
+									<ul>
+									  <li>1. Visualize how well separated the positive and negative examples are at training time</li>
+									  <img src="images/proj2/ori/seperated.png" alt="" />
+									  <li>2. Visualize the learned detector</li>
+									  <li>Original Detector:</li>
+									  <img src="images/proj2/ori/hog_template.png" alt="" />
+									  <li>Detector with <strong>Hard Negative Mining</strong></li>
+									  <img src="images/proj2/bonus/hog_template.png" alt="" />
+									</ul>
+								
+								<span class="byline"><p></p>Step 4: Run detector on test set</span>
+									<strong>run_detector.m</strong>
+									<ul>
+									  <li>1. Set the minimum confidence threshold</li>
+									  <li>2. For each image, run the classifier at multiple scales</li>
+									  <li>3. Call <strong>non_max_supr_bbox</strong> to remove duplicate detections</li>
+									</ul>
+									
+								<span class="byline"><p></p>Step 5: Evaluate and Visualize detections</span>
+									<strong>evaluate_detections.m</strong>
+									<ul>
+									  <li>Compute ROC curve, precision-recall curve, and average precision.</li>
+									  <li>Original Detector</li>
+									  <li><img src="images/proj2/ori/match_fig_6.png" alt="" /></li>
+									  <li><img src="images/proj2/ori/avg_precision.png" alt="" /></li>
+									  <li></li>
+									  <li>Detector with <strong>Hard Negative Mining</strong></li>
+									  <li><img src="images/proj2/bonus/average_precision.png" alt="" /></li>
+									</ul>
+									
+									<strong>visualize_detections_by_image.m</strong>
+									<ul>
+									  <li>Visualize detections in each image.</li>
+									  <li><img src="images/proj2/ori/detections_Argentina.jpg.png" alt="" /></li>
+									</ul>
+							</header>
+						</section>
+						
+						<section>
+							<header>
+								<h2>Training Performance</h2>
+							</header>
+							<img src="images/proj2/ori/performance.jpg" alt="" />
+						</section>
+					</div>
+					
+					<!-- Sidebar -->
+					<div id="sidebar" class="4u">
+						<section>
+							<header>
+								<h2>Our Feelings</h2>
+							</header>
+							<ul class="style">
+								<li>
+									<p class="posted">LI Yilong</p>
+									<img src="images/liyilong.jpg" height=64 alt="" />
+									<p class="text">MATLAB is amazing.</p>
+								</li>
+								<li>
+									<p class="posted">CHEN Yuji</p>
+									<img src="images/chenyuji.png" height=64 alt="" />
+									<p class="text">If the classifier detects a face while I don't, I will feel nervous.</p>
+								</li>
+							</ul>
+							<p><a href="https://github.com/enderloong/face_detector_msbd6000C/" class="button">GitHub Address</a></p>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<!--<div id="featured">-->
+		<!--	<div class="container">-->
+		<!--		<div class="row">-->
+		<!--			<div class="4u">-->
+		<!--				<h2>Other UI Functions</h2>-->
+		<!--				<a href="#" class="image full"><img src="images/pic02.jpg" alt="" /></a>-->
+		<!--				<p><strong>Ctrl+"+"</strong>, zoom in</p>-->
+		<!--				<p><strong>Ctrl+"-"</strong>, zoom out</p>-->
+		<!--				<p><strong>Backspace</strong>, when scissoring, delete the last seed; otherwise, delete selected contour</p>-->
+		<!--			</div>-->
+		<!--			<div class="4u">-->
+		<!--				<h2>Whistles and Bells</h2>-->
+		<!--				<a href="#" class="image full"><img src="images/blur-5x5.png" alt="" /></a>-->
+		<!--				<p><img src="images/blur5-debug-costGraph.png" alt="" /></p>-->
+		<!--				<p>We allow blurring the image by different amounts before computing link costs.  It can be observed that the costs are calculated more evenly and the range of min cost path increased after blurring. </p>-->
+		<!--			</div>-->
+		<!--		</div>-->
+		<!--	</div>-->
+		<!--</div>-->
+
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<div class="container">
+				<p>Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)</p>
+				<p>Edited by CHEN Yuji</p>
+			</div>
+		</div>
+		
+	</body>
+</html>
